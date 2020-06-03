@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Onibus Na Hora</string>
+    <string name="call_to_login">Efetue seu login!</string>
+    <string name="login_call_to_input_email">Insira seu email</string>
+    <string name="login_call_to_password">Insira sua senha</string>
+    <string name="entrar">ENTRAR</string>
+    <string name="login_call_to_cadastro">Não tem uma conta? Cadastre-se</string>
+    <string name="register_call_to_register">Cadastre-se Gratuitamente!</string>
+    <string name="register_call_to_login">Já tem uma conta? Entrar</string>
+    <string name="register_btn_register">CADASTRAR</string>
+    <string name="register_call_to_confirm_password">Confirme sua senha</string>
+    <string name="sair">Sair</string>
+    <string name="numero">Nº Ex: 100</string>
+    <string name="call_cep">Informe o CEP</string>
+    <string name="cadastro_de_ponto">Cadastro de ponto</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Ônibus Na Hora</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="d_um_nome_a_essa_rota">Dê um nome a essa rota</string>
+    <string name="insira_o_c_digo_da_rota">Insira o código da rota</string>
+    <string name="_000">000</string>
+    <string name="cadastro_de_rota">Cadastro de Rota</string>
+    <string name="c_digo">Código</string>
+    <string name="nome_da_rota">Nome da rota</string>
+    <string name="selecione_os_pontos">Selecione os pontos</string>
+    <string name="selecione_o_nibus">Selecione o ônibus</string>
+    <string name="cadastrar">Cadastrar</string>
+</resources>

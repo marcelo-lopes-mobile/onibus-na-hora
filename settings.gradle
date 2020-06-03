@@ -1,0 +1,2 @@
+rootProject.name='Onibus Na Hora'
+include ':app'

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.auth.RegisterActivity">
+
+    <TextView
+        android:id="@+id/register_call_to_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/register_call_to_register"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/register_etEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="5dp"
+        android:hint="@string/login_call_to_input_email"
+        android:importantForAutofill="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_call_to_register"/>
+
+    <EditText
+        android:id="@+id/register_etPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:inputType="textPassword"
+        android:hint="@string/login_call_to_password"
+        android:drawableStart="@drawable/ic_senha"
+        android:drawablePadding="5dp"
+        android:importantForAutofill="no"
+        app:layout_constraintStart_toStartOf="@id/register_etEmail"
+        app:layout_constraintEnd_toEndOf="@id/register_etEmail"
+        app:layout_constraintTop_toBottomOf="@id/register_etEmail"/>
+
+    <EditText
+        android:id="@+id/register_etConfirmPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:inputType="textPassword"
+        android:hint="@string/register_call_to_confirm_password"
+        android:drawableStart="@drawable/ic_senha"
+        android:drawablePadding="5dp"
+        android:importantForAutofill="no"
+        app:layout_constraintStart_toStartOf="@id/register_etPassword"
+        app:layout_constraintEnd_toEndOf="@id/register_etPassword"
+        app:layout_constraintTop_toBottomOf="@id/register_etPassword"/>
+
+    <Button
+        android:id="@+id/register_btnRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/register_btn_register"
+        android:textColor="@android:color/white"
+        android:background="@drawable/btn_primary"
+        app:layout_constraintStart_toStartOf="@id/register_etConfirmPassword"
+        app:layout_constraintEnd_toEndOf="@id/register_etConfirmPassword"
+        app:layout_constraintTop_toBottomOf="@id/register_etConfirmPassword"/>
+
+    <TextView
+        android:id="@+id/register_tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/register_call_to_login"
+        app:layout_constraintStart_toStartOf="@id/register_btnRegister"
+        app:layout_constraintEnd_toEndOf="@id/register_btnRegister"
+        app:layout_constraintTop_toBottomOf="@id/register_btnRegister"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

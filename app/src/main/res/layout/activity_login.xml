@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.auth.LoginActivity">
+
+    <TextView
+        android:id="@+id/login_call_to_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:text="@string/call_to_login"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/login_etEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="5dp"
+        android:hint="@string/login_call_to_input_email"
+        android:importantForAutofill="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_call_to_login"/>
+
+    <EditText
+        android:id="@+id/login_etPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:inputType="textPassword"
+        android:hint="@string/login_call_to_password"
+        android:drawableStart="@drawable/ic_senha"
+        android:drawablePadding="5dp"
+        android:importantForAutofill="no"
+        app:layout_constraintStart_toStartOf="@id/login_etEmail"
+        app:layout_constraintEnd_toEndOf="@id/login_etEmail"
+        app:layout_constraintTop_toBottomOf="@id/login_etEmail"/>
+
+    <Button
+        android:id="@+id/login_btnLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/entrar"
+        android:textColor="@android:color/white"
+        android:background="@drawable/btn_primary"
+        app:layout_constraintStart_toStartOf="@id/login_etPassword"
+        app:layout_constraintEnd_toEndOf="@id/login_etPassword"
+        app:layout_constraintTop_toBottomOf="@id/login_etPassword"/>
+
+    <TextView
+        android:id="@+id/login_tvRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/login_call_to_cadastro"
+        app:layout_constraintStart_toStartOf="@id/login_btnLogin"
+        app:layout_constraintEnd_toEndOf="@id/login_btnLogin"
+        app:layout_constraintTop_toBottomOf="@id/login_btnLogin"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

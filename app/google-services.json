@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1052422563876",
+    "firebase_url": "https://onibus-na-hora.firebaseio.com",
+    "project_id": "onibus-na-hora",
+    "storage_bucket": "onibus-na-hora.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052422563876:android:e093de367b72cb716250b1",
+        "android_client_info": {
+          "package_name": "br.com.onibusnahora"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1052422563876-kqt2q9t176evv0lak888eoakvnhl5fac.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.onibusnahora",
+            "certificate_hash": "de24cb03c03af372ceead3ae66f2ab756237d9d8"
+          }
+        },
+        {
+          "client_id": "1052422563876-9il1kc26pdfiu2la03ijh25qanche3t5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk2ZNZPz-vWjT8RDVk5tYnFJen3-iq49w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1052422563876-9il1kc26pdfiu2la03ijh25qanche3t5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

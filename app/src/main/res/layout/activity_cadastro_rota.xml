@@ -1,0 +1,114 @@
+    <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.app.CadastroRotaActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/cadastro_rota_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/cadastro_de_rota"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/c_digo"
+            app:layout_constraintBottom_toTopOf="@id/cadastro_rota_codigo"
+            app:layout_constraintStart_toStartOf="@id/cadastro_rota_codigo" />
+
+        <EditText
+            android:id="@+id/cadastro_rota_codigo"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            android:hint="@string/_000"
+            android:inputType="number"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cadastro_rota_titulo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/nome_da_rota"
+            app:layout_constraintBottom_toTopOf="@id/cadastro_rota_nome"
+            app:layout_constraintStart_toStartOf="@id/cadastro_rota_nome" />
+
+        <EditText
+            android:id="@+id/cadastro_rota_nome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/d_um_nome_a_essa_rota"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="@+id/cadastro_rota_codigo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cadastro_rota_codigo"
+            app:layout_constraintTop_toTopOf="@+id/cadastro_rota_codigo" />
+
+        <TextView
+            android:id="@+id/cadastro_rotas_titulo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/selecione_os_pontos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cadastro_rota_codigo" />
+
+        <ListView
+            android:id="@+id/cadastro_rota_listview1"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:paddingVertical="5dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@id/cadastro_rotas_titulo3"
+            app:layout_constraintEnd_toEndOf="@id/cadastro_rota_nome"
+            app:layout_constraintStart_toStartOf="@id/cadastro_rota_codigo"
+            app:layout_constraintTop_toBottomOf="@id/cadastro_rotas_titulo2"
+            tools:listitem="@layout/item_lista"
+            android:nestedScrollingEnabled="true"/>
+
+        <TextView
+            android:id="@+id/cadastro_rotas_titulo3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/selecione_o_nibus"
+            app:layout_constraintBottom_toTopOf="@id/cadastro_rota_listview2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cadastro_rota_listview1" />
+
+        <ListView
+            android:id="@+id/cadastro_rota_listview2"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:nestedScrollingEnabled="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/cadastro_rota_listview1"
+            app:layout_constraintStart_toStartOf="@id/cadastro_rota_listview1"
+            app:layout_constraintTop_toBottomOf="@id/cadastro_rotas_titulo3"
+            tools:listitem="@layout/item_lista" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
