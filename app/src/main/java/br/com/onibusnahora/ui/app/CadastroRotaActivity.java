@@ -36,10 +36,10 @@ public class CadastroRotaActivity extends AppCompatActivity {
 
     // Database components
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private ArrayAdapter<Object> adapter;
-    private ArrayAdapter<Object> adapter1;
-    private List<Object> pontosSelecionados = new ArrayList<>();
-    private List<Object> onibusSelecionados = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter1;
+    private List<String> pontosSelecionados = new ArrayList<>();
+    private List<String> onibusSelecionados = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -66,15 +66,20 @@ public class CadastroRotaActivity extends AppCompatActivity {
             String codigo = etCodigo.getText().toString();
             String nome = etNome.getText().toString();
 
-            Map<String, Object> rota = new HashMap<>();
-            rota.put("codigo", codigo);
-            rota.put("numero", nome);
-            rota.put("pontos", pontosSelecionados);
+            if (codigo.isEmpty() | nome.isEmpty() | pontosSelecionados.isEmpty()){
+                Toast.makeText(this, "Informe todos os campos!", Toast.LENGTH_SHORT).show();
+            } else {
+                Map<String, Object> rota = new HashMap<>();
+                rota.put("codigo", codigo);
+                rota.put("nome", nome);
+                rota.put("pontos", pontosSelecionados);
 
-            db.collection("rotas")
-                    .add(rota)
-                    .addOnSuccessListener(documentReference -> Log.d("sucessoCadRota", "DocumentSnapshot adicionado com ID: " + documentReference.getId()))
-                    .addOnFailureListener(e -> Log.w("erroNoCadRota", "erro ao adicionar documento", e));
+                db.collection("rotas")
+                        .add(rota)
+                        .addOnSuccessListener(documentReference -> Log.d("sucessoCadRota", "DocumentSnapshot adicionado com ID: " + documentReference.getId()))
+                        .addOnFailureListener(e -> Log.w("erroNoCadRota", "erro ao adicionar documento", e));
+                finish();
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -82,27 +87,29 @@ public class CadastroRotaActivity extends AppCompatActivity {
     private void dadosListaDePontos() {
         db.collection("pontos").get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Collection<Collection<Object>> valueList = new ArrayList<>();
+                        List<String> valueList = new ArrayList<>();
                         for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                             Map<String, Object> data = document.getData();
-                            valueList.add(data.values());
+                            String geocodePart1 = (String) data.get("geocode");
+                            String geocodePart2 = (String) data.get("numero");
+                            String geocode = geocodePart1 + ", " + geocodePart2;
+                            valueList.add(geocode);
                         }
-                        List<Object> listaGeocode = new ArrayList<>(valueList);
-                        configuraListaDePontos(listaGeocode);
+                        configuraListaDePontos(valueList);
                     } else {
                         Log.d("TAG", "Error getting documents: ", task.getException());
                     }
                 });
     }
 
-    private void configuraListaDePontos(List<Object> listaGeocode) {
+    private void configuraListaDePontos(List<String> listaGeocode) {
         adapter = new ArrayAdapter<>(CadastroRotaActivity.this, android.R.layout.simple_list_item_1, listaGeocode);
         listView1 = findViewById(R.id.cadastro_rota_listview1);
         listView1.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
         listView1.setOnItemClickListener((parent, view, position, id) -> {
-            Object itemAtPosition = parent.getItemAtPosition(position);
+            String itemAtPosition = (String) parent.getItemAtPosition(position);
             if (pontosSelecionados.contains(itemAtPosition)){
                 view.setBackgroundColor(Color.WHITE);
                 pontosSelecionados.remove(itemAtPosition);
@@ -116,28 +123,30 @@ public class CadastroRotaActivity extends AppCompatActivity {
     private void dadosListaDeOnibus() {
         db.collection("onibus").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Collection<Collection<Object>> valueList2 = new ArrayList<>();
+                List<String> listViewDataOnibus = new ArrayList<>();
                 for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                     Map<String, Object> data = document.getData();
-                    valueList2.add(data.values());
+                    String codigo = (String) data.get("codigo");
+                    String placa = (String) data.get("placa");
+                    String onibus = "Codigo: " + codigo + ", Placa: " + placa;
+                    listViewDataOnibus.add(onibus);
                 }
-                List<Object> listaOnibus = new ArrayList<>(valueList2);
 
-                configuraListaDeOnibus(listaOnibus);
+                configuraListaDeOnibus(listViewDataOnibus);
             } else {
                 Log.d("TAG", "Error getting documents: ", task.getException());
             }
         });
     }
 
-    private void configuraListaDeOnibus(List<Object> listaOnibus) {
+    private void configuraListaDeOnibus(List<String> listaOnibus) {
         adapter1 = new ArrayAdapter<>(CadastroRotaActivity.this, android.R.layout.simple_list_item_1, listaOnibus);
         listView2 = findViewById(R.id.cadastro_rota_listview2);
         listView2.setAdapter(adapter1);
         adapter1.notifyDataSetChanged();
 
         listView2.setOnItemClickListener((parent, view, position, id) -> {
-            Object itemAtPosition = parent.getItemAtPosition(position);
+            String  itemAtPosition = (String) parent.getItemAtPosition(position);
             if (onibusSelecionados.contains(itemAtPosition)){
                 view.setBackgroundColor(Color.WHITE);
                 onibusSelecionados.remove(itemAtPosition);
