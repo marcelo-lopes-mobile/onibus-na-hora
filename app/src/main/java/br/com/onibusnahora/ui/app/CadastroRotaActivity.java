@@ -68,6 +68,8 @@ public class CadastroRotaActivity extends AppCompatActivity {
 
             if (codigo.isEmpty() | nome.isEmpty() | pontosSelecionados.isEmpty()){
                 Toast.makeText(this, "Informe todos os campos!", Toast.LENGTH_SHORT).show();
+            } else if(pontosSelecionados.size() < 2){
+                Toast.makeText(this, "Informe 2 pontos no mínimo!", Toast.LENGTH_SHORT).show();
             } else {
                 Map<String, Object> rota = new HashMap<>();
                 rota.put("codigo", codigo);
@@ -90,9 +92,7 @@ public class CadastroRotaActivity extends AppCompatActivity {
                         List<String> valueList = new ArrayList<>();
                         for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                             Map<String, Object> data = document.getData();
-                            String geocodePart1 = (String) data.get("geocode");
-                            String geocodePart2 = (String) data.get("numero");
-                            String geocode = geocodePart1 + ", " + geocodePart2;
+                            String geocode = (String) data.get("geocode");
                             valueList.add(geocode);
                         }
                         configuraListaDePontos(valueList);

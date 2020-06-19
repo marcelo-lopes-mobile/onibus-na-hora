@@ -71,11 +71,10 @@ public class DialogPonto extends DialogFragment {
 
                                     if (enderecoResultado != null) {
                                         geocode = enderecoResultado.toString();
-
+                                        geocode += ", " + numero;
 
                                         Map<String, String> ponto = new HashMap<>();
                                         ponto.put("geocode", geocode);
-                                        ponto.put("numero", numero);
 
                                         db.collection("pontos")
                                                 .add(ponto)

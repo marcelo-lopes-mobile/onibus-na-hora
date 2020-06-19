@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -24,7 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.common.collect.Maps;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -42,7 +40,7 @@ import br.com.onibusnahora.ui.app.dialogs.DialogOnibus;
 import br.com.onibusnahora.ui.app.dialogs.DialogPonto;
 import br.com.onibusnahora.ui.app.dialogs.TimePickerFragment;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     // View component
     FloatingActionButton fbCadastros, fbCadastroDeOnibus, fbCadastroDeRota, fbCadastroDePonto;
@@ -222,7 +220,25 @@ public class HomeActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.logout){
             mFirebaseAuth.signOut();
             finish();
+        } else if(item.getItemId() == R.id.meus_pontos){
+            startActivity(new Intent(HomeActivity.this, MeusPontosActivity.class));
+        } else if(item.getItemId() == R.id.meus_onibus){
+            startActivity(new Intent(HomeActivity.this, MeusOnibusActivity.class));
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        calendar.set(Calendar.MINUTE, minute);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 }

@@ -17,6 +17,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,6 +30,7 @@ import java.io.IOException;
 import java.security.Permissions;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -56,7 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
 
-        PolylineOptions options = new PolylineOptions().width(5).color(Color.BLUE).visible(true);
+        PolylineOptions options = new PolylineOptions();
 
         db.collection("rotas")
                 .whereEqualTo("codigo", splitRota[0])
@@ -65,27 +68,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             ArrayList<String> pontos = (ArrayList<String>) document.getData().get("pontos");
-                            for (int i = 0; i < pontos.size(); i++){
+                            for (int i = 0; i < pontos.size(); i++) {
                                 LatLng latLng = pegaCoordenadasDoEndereco(pontos.get(i));
+                                assert latLng != null;
+                                options.add(latLng);
                                 mMap.addMarker(new MarkerOptions().position(latLng).title("Ponto " + i));
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                             }
                         }
+                        options.color(Color.GRAY);
+                        mMap.addPolyline(options);
+
                     } else {
-                        Log.d("BATATA", "Error getting documents: ", task.getException());
+                        Log.d("MapsErro", "Erro buscando os documentos: ", task.getException());
                     }
                 });
 
+
         mMap.setMinZoomPreference(15);
-        googleMap.addPolyline(options);
     }
 
 
-    private LatLng pegaCoordenadasDoEndereco(String endereco){
+    private LatLng pegaCoordenadasDoEndereco(String endereco) {
         try {
             Geocoder geocoder = new Geocoder(this);
-            List<Address> resultados = geocoder.getFromLocationName(endereco,1);
-            if(!resultados.isEmpty()){
+            List<Address> resultados = geocoder.getFromLocationName(endereco, 1);
+            if (!resultados.isEmpty()) {
                 return new LatLng(resultados.get(0).getLatitude(), resultados.get(0).getLongitude());
             }
         } catch (IOException e) {
