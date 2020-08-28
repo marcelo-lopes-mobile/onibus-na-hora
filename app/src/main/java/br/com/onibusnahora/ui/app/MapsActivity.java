@@ -40,7 +40,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private String rota;
     private String[] splitRota;
 
     @Override
@@ -49,7 +48,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        rota = (String) getIntent().getSerializableExtra("rota");
+        String rota = (String) getIntent().getSerializableExtra("rota");
         splitRota = rota.split("-");
     }
 
@@ -60,6 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         PolylineOptions options = new PolylineOptions();
+        options.geodesic(true);
 
         db.collection("rotas")
                 .whereEqualTo("codigo", splitRota[0])
@@ -79,8 +79,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         options.color(Color.GRAY);
                         mMap.addPolyline(options);
 
-                    } else {
-                        Log.d("MapsErro", "Erro buscando os documentos: ", task.getException());
                     }
                 });
 

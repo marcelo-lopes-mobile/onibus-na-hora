@@ -15,7 +15,7 @@
         android:roundIcon="@drawable/ic_launcher_background"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.app.MeusOnibusActivity"></activity>
+        <activity android:name=".ui.app.MeusOnibusActivity" />
         <activity android:name=".ui.app.MeusPontosActivity" />
         <activity android:name=".ui.app.CadastroRotaActivity" />
         <!--
